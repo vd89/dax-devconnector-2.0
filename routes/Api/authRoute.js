@@ -1,12 +1,15 @@
 /** @format */
 
 const { Router } = require('express');
+const { getUserData } = require('../../controller/authController');
+const authMiddleware = require('../../middleware/authMiddleware');
 
 const authRoute = new Router();
 
-// Test Route
-authRoute.get('/', (req, res, next) => {
-  res.status(200).json({ msg: 'The auth route' });
-});
+/* @route GET api/auth
+   @desc  auth user Data 
+   @access Private
+ */
+authRoute.get('/', authMiddleware, getUserData);
 
 module.exports = authRoute;

@@ -1,7 +1,7 @@
 /** @format */
 
-const { verify } = require('jsonwebtoken');
 const config = require('config');
+const { decodeToken } = require('../helper/jwToken');
 
 module.exports = async (req, res, next) => {
   // Get token from header
