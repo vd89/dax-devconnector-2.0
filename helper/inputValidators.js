@@ -10,6 +10,9 @@ module.exports = {
       body('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
     ];
   },
+  loginRules: () => {
+    return [body('email', 'Email valid email address').isEmail(), body('password', 'Password is required').exists()];
+  },
   validate: (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
