@@ -1,11 +1,16 @@
 /** @format */
 
 const { Router } = require('express');
+const { registerUser } = require('../../controller/userController');
+const { registerRules, validate } = require('../../helper/inputValidators');
 
 const userRoute = new Router();
 
-userRoute.get('/', (req, res, next) => {
-  res.status(200).json({ msg: 'The user route' });
-});
+
+/* @ route POST api/users
+   @ Register User
+   @ access Public
+ */
+userRoute.post('/', registerRules(),validate,registerUser);
 
 module.exports = userRoute;
