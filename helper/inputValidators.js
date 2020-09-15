@@ -37,6 +37,9 @@ module.exports = {
         .custom((value, { req }) => (req.body.to ? value < req.body.to : true)),
     ];
   },
+  postInputRules: () => {
+    return [body('text', 'Text is required').not().isEmpty()];
+  },
   validate: (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {

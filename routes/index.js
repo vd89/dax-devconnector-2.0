@@ -12,7 +12,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.use('/users', require('./Api/userRoutes'));
-router.use('/post', require('./Api/postsRoute'));
+router.use('/posts', require('./Api/postsRoute'));
 router.use('/auth', require('./Api/authRoute'));
 router.use('/profile', require('./Api/profileRoute'));
 
