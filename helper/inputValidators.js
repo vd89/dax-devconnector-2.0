@@ -44,6 +44,8 @@ module.exports = {
   expIdRule: () => [param('expId').isMongoId()],
   eduIdRule: () => [param('eduId').isMongoId()],
   paramsValidating: () => [param('id').isMongoId()],
+  commentRules: () => [param('id').isMongoId(), body('text', 'Text is required').not().isEmpty()],
+  commentRemoveRules: () => [param('id').isMongoId(), param('commentID').isMongoId()],
 
   validate: (req, res, next) => {
     const errors = validationResult(req);

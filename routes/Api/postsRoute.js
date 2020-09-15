@@ -1,8 +1,17 @@
 /** @format */
 
 const { Router } = require('express');
-const { createPost, getAllPost, getPostByID, deletePostByID } = require('../../controller/postController');
-const { validate, postInputRules, paramsValidating } = require('../../helper/inputValidators');
+const {
+  createPost,
+  getAllPost,
+  getPostByID,
+  deletePostByID,
+  likePost,
+  unlikePost,
+  addComment,
+  removeComment,
+} = require('../../controller/postController');
+const { validate, postInputRules, paramsValidating, commentRules } = require('../../helper/inputValidators');
 const auth = require('../../middleware/authMiddleware');
 
 const postRoute = new Router();
@@ -31,6 +40,26 @@ postRoute.get('/:id', auth, paramsValidating(), validate, getPostByID);
  */
 postRoute.delete('/:id', auth, paramsValidating(), validate, deletePostByID);
 
+/*  @route  PUT api/posts/like/:id
+    @desc   Like a Post
+    @access Private
+ */
+postRoute.put('/like/:id', auth, paramsValidating(), validate, likePost);
 
+/*  @route  PUT api/posts/unlike/:id
+    @desc   Unlink a Post
+    @access Private
+ */
+postRoute.put('/unlike/:id', auth, paramsValidating(), validate,unlikePost );
+
+// @route    POST api/posts/comment/:id
+// @desc     Comment on a post
+// @access   Private
+postRoute.post('/comment/:id', auth, commentRules(), validate, addComment)
+
+// @route    Delete api/posts/comment/:id/:commentID
+// @desc     Remove Comment
+// @access   Private
+postRoute.delete('/comment/:id/:commentID', auth, commentRules(), validate, removeComment)
 
 module.exports = postRoute;
