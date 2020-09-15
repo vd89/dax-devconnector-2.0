@@ -2,6 +2,8 @@
 
 const Profile = require('../models/profileModel');
 const User = require('../models/userModel');
+const config = require('config');
+const request = require('request');
 
 module.exports = {
   getMeProfile: async (req, res, next) => {
@@ -145,6 +147,29 @@ module.exports = {
       profile.education = profile.education.filter((edu) => edu._id.toString() !== eduId);
       await profile.save();
       return res.status(200).json({ data: { msg: 'Success', profile } });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  githubUsername: async (req, res, next) => {
+    try {
+      const option = {
+        uri: `https://api.github.com/users/${
+          req.params.username
+        }/repos?pre_page=5&sort=created:asc&client_id=${config.get('githubClientId')}&client_secret=${config.get(
+          'githubSecret'
+        )}`,
+        method: 'GET',
+        headers: { 'user-agent': 'node.js' },
+      };
+      request(option, (error, response, body) => {
+        if (error) console.log(error);
+        if (response.statusCode !== 200)
+          return res.status(404).json({ data: { msg: 'Fail', result: 'No Github Profile Found' } });
+        const result = JSON.parse(body);
+        return res.status(200).json({ data: { msg: 'Success', result } });
+      });
     } catch (error) {
       next(error);
     }

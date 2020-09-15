@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb://127.0.0.1:27017/dax-devConnector-02",
-  "jwtSecret":"I_AM_THE_SECRET_KEY"
+  "jwtSecret":"I_AM_THE_SECRET_KEY",
+  "githubClientId":"3257d83b5841e84267d7",
+  "githubSecret":"2848ae47a6583f06d5f82776e7be33dc5464941b"
 }

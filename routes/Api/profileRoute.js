@@ -11,6 +11,7 @@ const {
   addEducation,
   deleteExperience,
   deleteEducation,
+  githubUsername,
 } = require('../../controller/profileController');
 const {
   profileInputRules,
@@ -75,6 +76,13 @@ profileRoute.delete('/experience/:expId', auth, deleteExperience);
     @access Private
  */
 profileRoute.delete('/education/:eduId', auth, deleteEducation);
+
+/*  @route  GET api/profile/github/:username
+    @desc   Get User repos from Github
+    @access Public
+ */
+profileRoute.get('/github/:username', githubUsername);
+
 
 
 module.exports = profileRoute;
