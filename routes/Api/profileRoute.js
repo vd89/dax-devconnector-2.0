@@ -6,6 +6,7 @@ const {
   createOrUpdateProfile,
   getAllProfile,
   getSingleProfile,
+  deleteProfile,
 } = require('../../controller/profileController');
 const { profileInputRules, validate } = require('../../helper/inputValidators');
 const auth = require('../../middleware/authMiddleware');
@@ -35,5 +36,11 @@ profileRoute.get('/', getAllProfile);
     @access Public
  */
 profileRoute.get('/user/:userID', getSingleProfile);
+
+/*  @route  DELETE api/profile
+    @desc   Delete profile, user & post
+    @access Private
+ */
+profileRoute.delete('/',auth, deleteProfile);
 
 module.exports = profileRoute;

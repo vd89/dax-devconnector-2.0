@@ -84,4 +84,18 @@ module.exports = {
       next(error);
     }
   },
+
+  deleteProfile: async (req, res, next) => {
+    try {
+      // Todo remove post as well
+
+      // Remove Profile
+      await Profile.findOneAndRemove({ user: req.user.id });
+      // Remove User
+      await User.findByIdAndRemove({ _id: req.user.id });
+      return res.status(200).json({ data: { msg: 'Success', value: 'The user is deleted ' } });
+    } catch (error) {
+      next(error);
+    }
+  },
 };
