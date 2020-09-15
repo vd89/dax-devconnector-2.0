@@ -32,7 +32,7 @@ module.exports = {
   getPostByID: async (req, res, next) => {
     try {
       const post = await Post.findById(req.params.id);
-      if (!post) return status(400).json({ data: { msg: 'Fail', result: 'Post Not Found' } });
+      if (!post) return res.status(400).json({ data: { msg: 'Fail', result: 'Post Not Found' } });
       return res.status(200).json({ data: { msg: 'Success', post } });
     } catch (error) {
       next(error);

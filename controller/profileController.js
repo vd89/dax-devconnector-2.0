@@ -1,9 +1,11 @@
 /** @format */
 
+const Axios = require('axios');
+const config = require('config');
+
 const Profile = require('../models/profileModel');
 const User = require('../models/userModel');
-const config = require('config');
-const request = require('request');
+const Post = require('../models/postModel');
 
 module.exports = {
   getMeProfile: async (req, res, next) => {
@@ -89,8 +91,7 @@ module.exports = {
 
   deleteProfile: async (req, res, next) => {
     try {
-      // Todo remove post as well
-
+      await Post.deleteMany({ user: req.user.id });
       // Remove Profile
       await Profile.findOneAndRemove({ user: req.user.id });
       // Remove User
@@ -154,22 +155,15 @@ module.exports = {
 
   githubUsername: async (req, res, next) => {
     try {
-      const option = {
-        uri: `https://api.github.com/users/${
-          req.params.username
-        }/repos?pre_page=5&sort=created:asc&client_id=${config.get('githubClientId')}&client_secret=${config.get(
-          'githubSecret'
-        )}`,
-        method: 'GET',
-        headers: { 'user-agent': 'node.js' },
+      const uri = `
+      https://api.github.com/users/${req.params.username}/repos?pre_page=5&sort=created:asc`;
+      const headers = {
+        'user-agent': 'node.js',
+        Authorization: `${config.get('githubToken')}`,
       };
-      request(option, (error, response, body) => {
-        if (error) console.log(error);
-        if (response.statusCode !== 200)
-          return res.status(404).json({ data: { msg: 'Fail', result: 'No Github Profile Found' } });
-        const result = JSON.parse(body);
-        return res.status(200).json({ data: { msg: 'Success', result } });
-      });
+      const response = await Axios.get(uri, headers);
+      const githubResponse = response.data;
+      return res.status(200).json({ data: { msg: 'Success', result: githubResponse } });
     } catch (error) {
       next(error);
     }

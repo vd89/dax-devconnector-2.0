@@ -1,0 +1,5 @@
+{
+  "mongoURI": "<mongodbURL or local Mongodb server connection >",
+  "jwtSecret": "<provide any secret key >",
+  "githubToken": "<provide your github token>"
+}

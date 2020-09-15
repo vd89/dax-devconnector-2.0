@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "2d0439aa-e39b-4a3d-9bfd-c11c246d1549",
+		"name": "DaxDevConnector-2.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login Route",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY1ZjM5ZWQwMGE3YjQ1NGMxOTRhN2QyIn0sImlhdCI6MTYwMDA3NjI3MCwiZXhwIjoxNjAwMTEyMjcwfQ.3pRLYhScV5rMfQaSgTmLgs1SufBfZygIona0-60vvgA",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"email\":\"dixitvora@gmail.com\",\n    \"password\":\"admin123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/auth",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Post Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/post",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Post ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZmYjQ0ZGRlNjAyNTQwMzU4NDA4In0sImlhdCI6MTYwMDE1NTU3MiwiZXhwIjoxNjAwMTkxNTcyfQ.5XIq4JLRbCUuDejD2kHyfmDBLhMnvIXDPw7-do1AAAw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"This is the new post form  the text with user \"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/posts",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Post",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZmYjQ0ZGRlNjAyNTQwMzU4NDA4In0sImlhdCI6MTYwMDE1NTU3MiwiZXhwIjoxNjAwMTkxNTcyfQ.5XIq4JLRbCUuDejD2kHyfmDBLhMnvIXDPw7-do1AAAw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/posts",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get PostByID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZmYjQ0ZGRlNjAyNTQwMzU4NDA4In0sImlhdCI6MTYwMDE1NTU3MiwiZXhwIjoxNjAwMTkxNTcyfQ.5XIq4JLRbCUuDejD2kHyfmDBLhMnvIXDPw7-do1AAAw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/posts/5f60993a0849fa5c677ee8d6",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"posts",
+								"5f60993a0849fa5c677ee8d6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delet Post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZmYjQ0ZGRlNjAyNTQwMzU4NDA4In0sImlhdCI6MTYwMDE5MjY0MywiZXhwIjoxNjAwMjI4NjQzfQ._cCB5XluQ59phdZg4tgsHTCBzde2QIm6rOJ2PYLI2JA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/posts/5f60993a0849fa5c677ee8d6",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"posts",
+								"5f60993a0849fa5c677ee8d6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like Post ",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZlNTA0ZGRlNjAyNTQwMzU4NDA0In0sImlhdCI6MTYwMDE5MzcxNSwiZXhwIjoxNjAwMjI5NzE1fQ.zqx0InMAk1M8bVcsCRPBNjYMLs1GxIMSHbNAFktj9qk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/posts/like/5f6099c79919fc5d42d2556f",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"posts",
+								"like",
+								"5f6099c79919fc5d42d2556f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unlike Post",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZlNTA0ZGRlNjAyNTQwMzU4NDA0In0sImlhdCI6MTYwMDE5MzcxNSwiZXhwIjoxNjAwMjI5NzE1fQ.zqx0InMAk1M8bVcsCRPBNjYMLs1GxIMSHbNAFktj9qk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/posts/unlike/5f61057fa7dfe2b5fc759f27",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"posts",
+								"unlike",
+								"5f61057fa7dfe2b5fc759f27"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddComment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZlNTA0ZGRlNjAyNTQwMzU4NDA0In0sImlhdCI6MTYwMDE5MzcxNSwiZXhwIjoxNjAwMjI5NzE1fQ.zqx0InMAk1M8bVcsCRPBNjYMLs1GxIMSHbNAFktj9qk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\":\"This is a great post to read\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/posts/comment/5f6099c79919fc5d42d2556f",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"posts",
+								"comment",
+								"5f6099c79919fc5d42d2556f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Comment ",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZlNTA0ZGRlNjAyNTQwMzU4NDA0In0sImlhdCI6MTYwMDE5MzcxNSwiZXhwIjoxNjAwMjI5NzE1fQ.zqx0InMAk1M8bVcsCRPBNjYMLs1GxIMSHbNAFktj9qk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/posts/comment/5f6099c79919fc5d42d2556f/5f6116e8fe3ccac81f439adb",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"posts",
+								"comment",
+								"5f6099c79919fc5d42d2556f",
+								"5f6116e8fe3ccac81f439adb"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Login User PRofile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY1ZjRhNWIxY2RmMjk2MzVkNTMzNTdhIn0sImlhdCI6MTYwMDA4Mjg1NCwiZXhwIjoxNjAwMTE4ODU0fQ.vyEnSfa_E-loTvZ6RO4G6nNQEsMMuz0Y66BeapzqtVc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/profile/me",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"profile",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateAndUpdate Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY1ZjRhNWIxY2RmMjk2MzVkNTMzNTdhIn0sImlhdCI6MTYwMDA4Mjg1NCwiZXhwIjoxNjAwMTE4ODU0fQ.vyEnSfa_E-loTvZ6RO4G6nNQEsMMuz0Y66BeapzqtVc",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY1ZjRhNWIxY2RmMjk2MzVkNTMzNTdhIn0sImlhdCI6MTYwMDA4Mjg1NCwiZXhwIjoxNjAwMTE4ODU0fQ.vyEnSfa_E-loTvZ6RO4G6nNQEsMMuz0Y66BeapzqtVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\":\"developer\",\n    \"skills\":\"HTML, CSS, NodeJS,Express,MongoDB, PHP, Python\",\n    \"company\":\"Jmaes infotect\",\n      \"website\":\"jamesinfor.com\",\n      \"location\":\"Rajkot GJ\",\n      \"bio\":\"I am a self taught developer from Rajkot\",\n      \"githubUserName\":\"dixitvora\",\n      \"youTube\":\"https://youtube.com/dixitvora\",\n      \"twitter\":\"https://twitter.com/dixitvora9\",\n      \"faceBook\":\"https://faceboot.com/dixitvora\",\n      \"linkedIn\":\"https://linkedin.com/dixitvora\",\n      \"instagram\":\"https://instagram.com/dixitvora\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/profile",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Profiles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/profile",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get userProfilebyID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/profile/user/5f5f4a5b1cdf29635d53357a",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"profile",
+								"user",
+								"5f5f4a5b1cdf29635d53357a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Profile",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY1ZjRhNWIxY2RmMjk2MzVkNTMzNTdhIn0sImlhdCI6MTYwMDE1MzQ1NSwiZXhwIjoxNjAwMTg5NDU1fQ.dBkRzuJSRtwmZSLMo3w-4ibEnCMGczzM-yKm9YrQz0I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/profile",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Experence ",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZmYjQ0ZGRlNjAyNTQwMzU4NDA4In0sImlhdCI6MTYwMDE1NTU3MiwiZXhwIjoxNjAwMTkxNTcyfQ.5XIq4JLRbCUuDejD2kHyfmDBLhMnvIXDPw7-do1AAAw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"Jr. Web developer\",\n    \"company\":\"James Info Tech\",\n    \"location\":\"Rajkot\",\n    \"from\":\"2018-05-01\",\n    \"current\": true,\n    \"description\":\"Create websites for the client and custom design\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/profile/experience",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"profile",
+								"experience"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Education",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZmYjQ0ZGRlNjAyNTQwMzU4NDA4In0sImlhdCI6MTYwMDE1NTU3MiwiZXhwIjoxNjAwMTkxNTcyfQ.5XIq4JLRbCUuDejD2kHyfmDBLhMnvIXDPw7-do1AAAw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"school\":\"The Hacking Boot camp\",\n    \"degree\":\"MERN stack Bootcamp\",\n    \"fieldOfStudy\":\"JavaScript and nodeJs\",\n    \"from\":\"2020-03-01\",\n    \"to\":\"2020-08-01\",\n    \"description\":\"Bootcamp for the MERN stack development \"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/profile/education",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"profile",
+								"education"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Experience By id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZmYjQ0ZGRlNjAyNTQwMzU4NDA4In0sImlhdCI6MTYwMDE1NTU3MiwiZXhwIjoxNjAwMTkxNTcyfQ.5XIq4JLRbCUuDejD2kHyfmDBLhMnvIXDPw7-do1AAAw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/profile/experience/5f607c1635515b3b09cc71e1",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"profile",
+								"experience",
+								"5f607c1635515b3b09cc71e1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Education",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWY2MDZmYjQ0ZGRlNjAyNTQwMzU4NDA4In0sImlhdCI6MTYwMDE1NTU3MiwiZXhwIjoxNjAwMTkxNTcyfQ.5XIq4JLRbCUuDejD2kHyfmDBLhMnvIXDPw7-do1AAAw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ApiUrl}}/profile/education/5f60889ad1c83246f4ff843f",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"profile",
+								"education",
+								"5f60889ad1c83246f4ff843f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get github search ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{ApiUrl}}/profile/github/vd89",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"profile",
+								"github",
+								"vd89"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "RegisterUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"James Smith\",\n    \"email\":\"j@info.com\",\n    \"password\":\"admin123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ApiUrl}}/users",
+							"host": [
+								"{{ApiUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
