@@ -1,6 +1,6 @@
 /** @format */
 
-const { body, validationResult } = require('express-validator');
+const { body, validationResult, param } = require('express-validator');
 
 module.exports = {
   registerRules: () => {
@@ -40,6 +40,11 @@ module.exports = {
   postInputRules: () => {
     return [body('text', 'Text is required').not().isEmpty()];
   },
+  userIdRule: () => [param('userID').isMongoId()],
+  expIdRule: () => [param('expId').isMongoId()],
+  eduIdRule: () => [param('eduId').isMongoId()],
+  paramsValidating: () => [param('id').isMongoId()],
+
   validate: (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {

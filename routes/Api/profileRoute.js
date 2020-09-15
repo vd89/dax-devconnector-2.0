@@ -18,6 +18,9 @@ const {
   validate,
   experienceInputRules,
   educationInputRules,
+  userIdRule,
+  expIdRule,
+  eduIdRule,
 } = require('../../helper/inputValidators');
 const auth = require('../../middleware/authMiddleware');
 
@@ -45,7 +48,7 @@ profileRoute.get('/', getAllProfile);
     @desc   Get User Profile
     @access Public
  */
-profileRoute.get('/user/:userID', getSingleProfile);
+profileRoute.get('/user/:userID', userIdRule(), validate, getSingleProfile);
 
 /*  @route  DELETE api/profile
     @desc   Delete profile, user & post
@@ -69,13 +72,13 @@ profileRoute.put('/education', auth, educationInputRules(), validate, addEducati
     @desc   Delete profile experience
     @access Private
  */
-profileRoute.delete('/experience/:expId', auth, deleteExperience);
+profileRoute.delete('/experience/:expId', auth, expIdRule(), validate, deleteExperience);
 
 /*  @route  DELETE api/profile/education/:eduId
     @desc   Delete profile education
     @access Private
  */
-profileRoute.delete('/education/:eduId', auth, deleteEducation);
+profileRoute.delete('/education/:eduId', auth, eduIdRule(), validate, deleteEducation);
 
 /*  @route  GET api/profile/github/:username
     @desc   Get User repos from Github

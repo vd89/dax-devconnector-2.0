@@ -28,4 +28,29 @@ module.exports = {
       next(error);
     }
   },
+
+  getPostByID: async (req, res, next) => {
+    try {
+      const post = await Post.findById(req.params.id);
+      if (!post) return status(400).json({ data: { msg: 'Fail', result: 'Post Not Found' } });
+      return res.status(200).json({ data: { msg: 'Success', post } });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  deletePostByID: async (req, res, next) => {
+    try {
+      const post = await Post.findById(req.params.id);
+      if (!post) return res.status(404).json({ data: { msg: 'Fail', result: 'Post Not Found' } });
+      // Check if user
+      if (post.user.toString() !== req.user.id) {
+        return res.status(401).json({ data: { msg: 'Fail', result: 'User not authorized' } });
+      }
+      await post.remove();
+      return res.status(200).json({ data: { msg: 'Success', result: 'Post deleted' } });
+    } catch (error) {
+      next(error);
+    }
+  },
 };

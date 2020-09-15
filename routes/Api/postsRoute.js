@@ -1,8 +1,8 @@
 /** @format */
 
 const { Router } = require('express');
-const { createPost, getAllPost } = require('../../controller/postController');
-const { validate, postInputRules } = require('../../helper/inputValidators');
+const { createPost, getAllPost, getPostByID, deletePostByID } = require('../../controller/postController');
+const { validate, postInputRules, paramsValidating } = require('../../helper/inputValidators');
 const auth = require('../../middleware/authMiddleware');
 
 const postRoute = new Router();
@@ -14,9 +14,23 @@ const postRoute = new Router();
 postRoute.post('/', auth, postInputRules(), validate, createPost);
 
 /*  @route  GET api/posts
-    @desc   CGet all Post
+    @desc   Get all Post
     @access Private
  */
-postRoute.get('/',auth , getAllPost);
+postRoute.get('/', auth, getAllPost);
+
+/*  @route  GET api/posts/:id
+    @desc   Get  Post by id
+    @access Private
+ */
+postRoute.get('/:id', auth, paramsValidating(), validate, getPostByID);
+
+/*  @route  DELETE api/posts/:id
+    @desc   Delete  Post by id
+    @access Private
+ */
+postRoute.delete('/:id', auth, paramsValidating(), validate, deletePostByID);
+
+
 
 module.exports = postRoute;
