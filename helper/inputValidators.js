@@ -13,6 +13,9 @@ module.exports = {
   loginRules: () => {
     return [body('email', 'Email valid email address').isEmail(), body('password', 'Password is required').exists()];
   },
+  profileInputRules: () => {
+    return [body('status', 'Status is required').not().isEmpty(), body('skills', 'Skills is required').not().isEmpty()];
+  },
   validate: (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {

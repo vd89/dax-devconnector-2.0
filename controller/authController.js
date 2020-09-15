@@ -31,7 +31,7 @@ module.exports = {
           id: user.id,
         },
       };
-      const token = createJwt(payload);
+      const token = await createJwt(payload);
       user.password = undefined;
       user.createdAt = undefined;
       user.updatedAt = undefined;
