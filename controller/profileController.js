@@ -98,4 +98,55 @@ module.exports = {
       next(error);
     }
   },
+
+  addExperience: async (req, res, next) => {
+    try {
+      const { title, company, location, from, to, current, description } = req.body;
+      const newExp = { title, company, location, from, to, current, description };
+      const profile = await Profile.findOne({ user: req.user.id });
+      profile.experience.unshift(newExp);
+      await profile.save();
+      return res.status(200).json({ data: { msg: 'Success', profile } });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  addEducation: async (req, res, next) => {
+    try {
+      const { school, degree, fieldOfStudy, from, to, current, description } = req.body;
+      const newEdu = { school, degree, fieldOfStudy, from, to, current, description };
+      const profile = await Profile.findOne({ user: req.user.id });
+      profile.education.unshift(newEdu);
+      await profile.save();
+      return res.status(200).json({ data: { msg: 'Success', profile } });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  deleteExperience: async (req, res, next) => {
+    try {
+      const { expId } = req.params;
+      const profile = await Profile.findOne({ user: req.user.id });
+
+      profile.experience = profile.experience.filter((exp) => exp._id.toString() !== expId);
+      await profile.save();
+      return res.status(200).json({ data: { msg: 'Success', profile } });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  deleteEducation: async (req, res, next) => {
+    try {
+      const { eduId } = req.params;
+      const profile = await Profile.findOne({ user: req.user.id });
+      profile.education = profile.education.filter((edu) => edu._id.toString() !== eduId);
+      await profile.save();
+      return res.status(200).json({ data: { msg: 'Success', profile } });
+    } catch (error) {
+      next(error);
+    }
+  },
 };

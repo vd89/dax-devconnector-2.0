@@ -16,6 +16,27 @@ module.exports = {
   profileInputRules: () => {
     return [body('status', 'Status is required').not().isEmpty(), body('skills', 'Skills is required').not().isEmpty()];
   },
+  experienceInputRules: () => {
+    return [
+      body('title', 'Title is required').not().isEmpty(),
+      body('company', 'Company is required').not().isEmpty(),
+      body('from', 'From date is required and needs to be from the past')
+        .not()
+        .isEmpty()
+        .custom((value, { req }) => (req.body.to ? value < req.body.to : true)),
+    ];
+  },
+  educationInputRules: () => {
+    return [
+      body('school', 'School is required').not().isEmpty(),
+      body('degree', 'Degree is required').not().isEmpty(),
+      body('fieldOfStudy', 'Field of study is required').not().isEmpty(),
+      body('from', 'From date is required and needs to be from the past')
+        .not()
+        .isEmpty()
+        .custom((value, { req }) => (req.body.to ? value < req.body.to : true)),
+    ];
+  },
   validate: (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {

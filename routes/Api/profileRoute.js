@@ -7,8 +7,17 @@ const {
   getAllProfile,
   getSingleProfile,
   deleteProfile,
+  addExperience,
+  addEducation,
+  deleteExperience,
+  deleteEducation,
 } = require('../../controller/profileController');
-const { profileInputRules, validate } = require('../../helper/inputValidators');
+const {
+  profileInputRules,
+  validate,
+  experienceInputRules,
+  educationInputRules,
+} = require('../../helper/inputValidators');
 const auth = require('../../middleware/authMiddleware');
 
 const profileRoute = new Router();
@@ -41,6 +50,31 @@ profileRoute.get('/user/:userID', getSingleProfile);
     @desc   Delete profile, user & post
     @access Private
  */
-profileRoute.delete('/',auth, deleteProfile);
+profileRoute.delete('/', auth, deleteProfile);
+
+/*  @route  PUT api/profile/experience
+    @desc   Add profile experience
+    @access Private
+ */
+profileRoute.put('/experience', auth, experienceInputRules(), validate, addExperience);
+
+/*  @route  PUT api/profile/education
+    @desc   Add profile education
+    @access Private
+ */
+profileRoute.put('/education', auth, educationInputRules(), validate, addEducation);
+
+/*  @route  DELETE api/profile/experience/:expId
+    @desc   Delete profile experience
+    @access Private
+ */
+profileRoute.delete('/experience/:expId', auth, deleteExperience);
+
+/*  @route  DELETE api/profile/education/:eduId
+    @desc   Delete profile education
+    @access Private
+ */
+profileRoute.delete('/education/:eduId', auth, deleteEducation);
+
 
 module.exports = profileRoute;
