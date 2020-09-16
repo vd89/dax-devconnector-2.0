@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -41,7 +42,7 @@ const Login = () => {
         <input type='submit' className='btn btn-primary' value='Login' />
       </form>
       <p className='my-1'>
-        Don't have an account? <a href='register.html'>Sign Up</a>
+        Don't have an account? <Link to='/register'>Sign Up</Link>
       </p>
     </>
   );
