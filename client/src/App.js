@@ -7,22 +7,24 @@ import Login from './Component/Auth/Login';
 import Register from './Component/Auth/Register';
 import Landing from './Component/Layout/Landing';
 import Navbar from './Component/Layout/Navbar';
+import Alert from './Component/Layout/Alert';
 import Store from './Store';
 
 const App = () => (
   <Provider store={Store}>
-      <BrowserRouter>
-        <>
-          <Navbar />
-          <Route exact path='/' component={Landing} />
-          <section className='container'>
-            <Switch>
-              <Route exact path='/register' component={Register} />
-              <Route exact path='/login' component={Login} />
-            </Switch>
-          </section>
-        </>
-      </BrowserRouter>
+    <BrowserRouter>
+      <>
+        <Navbar />
+        <Route exact path='/' component={Landing} />
+        <section className='container'>
+          <Alert />
+          <Switch>
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/login' component={Login} />
+          </Switch>
+        </section>
+      </>
+    </BrowserRouter>
   </Provider>
 );
 

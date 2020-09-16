@@ -1,8 +1,7 @@
 /** @format */
 
-const { compareSync } = require('bcryptjs');
-/** @format */
 
+const { compareSync } = require('bcryptjs');
 const { createJwt } = require('../helper/jwToken');
 const User = require('../models/userModel');
 
