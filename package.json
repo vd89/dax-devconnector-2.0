@@ -1,7 +1,7 @@
 {
   "name": "dax-devconnector-0.2",
   "version": "1.0.0",
-  "description": "Social network for the devlopers ",
+  "description": "Social network for the developers ",
   "main": "index.js",
   "repository": "git@github.com:vd89/dax-devconnector-2.0.git",
   "author": "dixitvora <dixitvora@gmail.com>",
@@ -26,6 +26,8 @@
   },
   "scripts": {
     "start": "node .",
-    "dev": "nodemon ."
+    "server": "nodemon .",
+    "client":"npm start --prefix client",
+    "dev":"concurrently \"npm run server\" \"npm run client\""
   }
 }
