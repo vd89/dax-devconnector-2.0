@@ -8,7 +8,7 @@ import Register from './Component/Auth/Register';
 import Landing from './Component/Layout/Landing';
 import Navbar from './Component/Layout/Navbar';
 import Alert from './Component/Layout/Alert';
-import Store from './Store';
+import Store from './ReduxStore';
 
 const App = () => (
   <Provider store={Store}>

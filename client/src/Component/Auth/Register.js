@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setAlert } from '../../Actions/alert';
+import { setAlert } from '../../Actions/alertAction';
 import PropTypes from 'prop-types';
 
 
