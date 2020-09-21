@@ -16,7 +16,7 @@ module.exports = {
       const { name, email, password } = req.body;
       let user = await User.findOne({ email });
       if (user) {
-        return res.status(400).json({ data: { error: [{ msg: 'User Already Exists' }] } });
+        return res.status(400).json({ error: [{ msg: 'User Already Exists' }] });
       }
       const avatar = gravatar.url(email, {
         s: '200',

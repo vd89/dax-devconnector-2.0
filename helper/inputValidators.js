@@ -54,7 +54,7 @@ module.exports = {
     }
     const extractedErrors = [];
     errors.array().map((err) => {
-      extractedErrors.push({ [err.location]: err.location, [err.param]: err.msg });
+      extractedErrors.push({ [err.location]: err.location, msg: err.msg });
     });
 
     return res.status(400).json({ errors: extractedErrors });
