@@ -2,14 +2,14 @@
 
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../Actions/alertAction';
 import { register } from '../../Actions/authAction'
 
 import PropTypes from 'prop-types';
 
 
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -26,11 +26,13 @@ const Register = ({ setAlert, register }) => {
     if (password !== password2) {
       setAlert('Password do not match ', 'danger');
     } else {
-      console.log({ name, email, password });
-      const formData = {name,email,password}
+      const formData = { name, email, password };
       register(formData);
     }
   };
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
   return (
     <>
       <h1 className='large text-primary'>Sign Up</h1>
@@ -39,7 +41,7 @@ const Register = ({ setAlert, register }) => {
       </p>
       <form className='form' onSubmit={onSubmitHandler}>
         <div className='form-group'>
-          <input type='text' placeholder='Name' name='name'  value={name} onChange={onChangeHandler} />
+          <input type='text' placeholder='Name' name='name' value={name} onChange={onChangeHandler} />
         </div>
         <div className='form-group'>
           <input type='email' placeholder='Email Address' name='email' value={email} onChange={onChangeHandler} />
@@ -79,5 +81,9 @@ const Register = ({ setAlert, register }) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
-export default connect(null, { setAlert,register })(Register);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+export default connect(mapStateToProps, { setAlert, register })(Register);
