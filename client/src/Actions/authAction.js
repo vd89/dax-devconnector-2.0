@@ -3,7 +3,16 @@
 import Axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import { setAlert } from './alertAction';
-import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types';
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT,
+  CLEAR_PROFILE,
+} from './types';
 
 // Register User
 
@@ -62,7 +71,7 @@ export const login = (formData) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
-    dispatch(loadUser())
+    dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
@@ -77,9 +86,7 @@ export const login = (formData) => async (dispatch) => {
 };
 
 // Logout  && clear Profile
-export const logout = () => dispatch => {
-  dispatch({
-    type:LOGOUT
-  })
-}
-
+export const logout = () => (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: LOGOUT });
+};

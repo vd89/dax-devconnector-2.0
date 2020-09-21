@@ -6,6 +6,15 @@
   --danger-color: #dc3545;
   --success-color: #28a745;
 }
+.App-logo {
+  width: 200px;
+  margin: auto;
+  display: block;
+  pointer-events: none;
+  animation: App-logo-spin infinite 10s linear;
+
+}
+
 
 * {
   margin: 0;
@@ -573,5 +582,16 @@ button {
   .post a,
   .post button {
     padding: 0.3rem 0.4rem;
+  }
+  .App-logo {
+    animation: App-logo-spin infinite 10s linear;
+  }
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
