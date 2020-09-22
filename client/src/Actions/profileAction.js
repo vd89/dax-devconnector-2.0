@@ -1,6 +1,14 @@
 import Axios from 'axios';
 import { setAlert } from './alertAction';
-import { CLEAR_PROFILE, GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE, ACCOUNT_DELETED } from './types';
+import {
+  CLEAR_PROFILE,
+  GET_PROFILE,
+  PROFILE_ERROR,
+  UPDATE_PROFILE,
+  ACCOUNT_DELETED,
+  GET_PROFILES,
+  GET_REPOS,
+} from './types';
 
 const config = {
   headers: {
@@ -14,6 +22,55 @@ export const getCurrentProfile = () => async (dispatch) => {
     const res = await Axios.get('/api/profile/me', config);
     dispatch({
       type: GET_PROFILE,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    await dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Get all Profiles 
+export const getProfiles = () => async dispatch => {
+  dispatch({ type: CLEAR_PROFILE });
+  try {
+    const res = await Axios.get('/api/profile', config);
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    await dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+}
+
+// Get profile by id
+export const getProfileById = userId => async (dispatch) => {
+  try {
+    const res = await Axios.get(`/api/profile/user/${userId}`, config);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data.data,
+    });
+  } catch (err) {
+    await dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Get Github Repos 
+export const getGithubRepos = (username) => async (dispatch) => {
+  try {
+    const res = await Axios.get(`/api/profile/github/${username}`, config);
+    dispatch({
+      type: GET_REPOS,
       payload: res.data.data,
     });
   } catch (err) {
@@ -137,7 +194,6 @@ export const deleteEducation = (id) => async (dispatch) => {
 };
 
 // Delete account & profile
-
 export const deleteAccount = () => async (dispatch) => {
   if (window.confirm('Are you sure? This can NOT be undone!')) {
     try {
@@ -153,3 +209,4 @@ export const deleteAccount = () => async (dispatch) => {
     }
   }
 };
+
