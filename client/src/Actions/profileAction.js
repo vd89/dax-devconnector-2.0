@@ -11,7 +11,7 @@ const config = {
 
 export const getCurrentProfile = () => async (dispatch) => {
   try {
-    const res = await Axios.get('/api/profile/me');
+    const res = await Axios.get('/api/profile/me', config);
     dispatch({
       type: GET_PROFILE,
       payload: res.data.data,
@@ -34,6 +34,8 @@ export const createProfile = (formData, history, edit = false) => async (dispatc
     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
     if (!edit) {
       history.push('/dashboard');
+    } else {
+      history.push('/dashboard');      
     }
   } catch (err) {
     const errors = err.response.data.errors;

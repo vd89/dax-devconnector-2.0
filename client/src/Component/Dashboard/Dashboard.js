@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../Actions/profileAction';
 import Spinner from '../Layout/Spinner';
+import DashboardActions from './DashboardActions';
 
 const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, [getCurrentProfile]);
+  }, [loading, getCurrentProfile]);
 
   return loading && profile === null ? (
     <Spinner />
@@ -20,7 +21,9 @@ const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, load
         Welcome {user?.name}
       </p>
       {profile !== null ? (
-        <>has</>
+        <>
+          <DashboardActions />
+        </>
       ) : (
         <>
           <p>You have not yet setup a profile, please provide some info</p>

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile } from '../../../Actions/profileAction';
+import { createProfile, getCurrentProfile } from '../../../Actions/profileAction';
 import { Link, withRouter } from 'react-router-dom';
 
-const CreateProfile = ({ createProfile, history }) => {
+const EditProfile = ({ getCurrentProfile, createProfile, history, profile: { profile, loading } }) => {
   const [formData, setFormData] = useState({
     company: '',
     website: '',
@@ -19,6 +19,7 @@ const CreateProfile = ({ createProfile, history }) => {
     linkedIn: '',
     instagram: '',
   });
+
   const [displaySocialInput, toggleDisplaySocialInput] = useState(false);
   const {
     company,
@@ -35,16 +36,31 @@ const CreateProfile = ({ createProfile, history }) => {
     instagram,
   } = formData;
 
+  useEffect(() => {
+    if (!profile) getCurrentProfile();
+    if (!loading && profile) {
+      const profileData = { ...formData };
+      for (const key in profile) {
+        if (key in profileData) profileData[key] = profile[key];
+      }
+      for (const key in profile.social) {
+        if (key in profileData) profileData[key] = profile.social[key];
+      }
+      if (Array.isArray(profileData.skills)) profileData.skills = profileData.skills.join(', ');
+      setFormData(profileData);
+    }
+  }, [loading]);
+
   const onChangeHandler = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   };
   return (
     <>
-      <h1 className='large text-primary'>Create Your Profile</h1>
+      <h1 className='large text-primary'>Edit Your Profile</h1>
       <p className='lead'>
-        <i className='fas fa-user'></i> Let's get some information to make your profile stand out
+        <i className='fas fa-user'></i> Make some change in your profile that can be viewed
       </p>
       <small>* = required field</small>
       <form className='form' onSubmit={onSubmitHandler}>
@@ -154,8 +170,12 @@ const CreateProfile = ({ createProfile, history }) => {
   );
 };
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 };
-
-export default connect(null, { createProfile })(withRouter(CreateProfile));
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(withRouter(EditProfile));

@@ -13,6 +13,7 @@ import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './Actions/authAction';
 import Dashboard from './Component/Dashboard/Dashboard';
 import PrivateRoute from './Component/Routing/PrivateRoute';
+import EditProfile from './Component/Dashboard/ProfileForms/EditProfile';
 import CreateProfile from './Component/Dashboard/ProfileForms/CreateProfile';
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
               <Route exact path='/login' component={Login} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
               <PrivateRoute exact path='/createProfile' component={CreateProfile} />
+              <PrivateRoute exact path='/editProfile' component={EditProfile} />
             </Switch>
           </section>
         </>

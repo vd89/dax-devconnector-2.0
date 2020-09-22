@@ -13,9 +13,9 @@ module.exports = {
       const profile = await Profile.findOne({
         user: req.user.id,
       }).populate('user', ['name', 'avatar']);
-      if (!profile) {
-        return res.status(400).json({ data: { msg: 'There is no profile for this user' } });
-      }
+      // if (!profile) {
+      //   return res.status(400).json({ data: { msg: 'There is no profile for this user' } });
+      // }
       return res.status(200).json({ data: { msg: 'Success', profile } });
     } catch (error) {
       next(error);
