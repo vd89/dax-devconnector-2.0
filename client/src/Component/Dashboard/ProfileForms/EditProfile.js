@@ -4,21 +4,22 @@ import { connect } from 'react-redux';
 import { createProfile, getCurrentProfile } from '../../../Actions/profileAction';
 import { Link, withRouter } from 'react-router-dom';
 
+const initialState = {
+  company: '',
+  website: '',
+  location: '',
+  status: '',
+  skills: '',
+  bio: '',
+  githubUserName: '',
+  youTube: '',
+  twitter: '',
+  faceBook: '',
+  linkedIn: '',
+  instagram: '',
+};
 const EditProfile = ({ getCurrentProfile, createProfile, history, profile: { profile, loading } }) => {
-  const [formData, setFormData] = useState({
-    company: '',
-    website: '',
-    location: '',
-    status: '',
-    skills: '',
-    bio: '',
-    githubUserName: '',
-    youTube: '',
-    twitter: '',
-    faceBook: '',
-    linkedIn: '',
-    instagram: '',
-  });
+  const [formData, setFormData] = useState(initialState);
 
   const [displaySocialInput, toggleDisplaySocialInput] = useState(false);
   const {
@@ -39,7 +40,7 @@ const EditProfile = ({ getCurrentProfile, createProfile, history, profile: { pro
   useEffect(() => {
     if (!profile) getCurrentProfile();
     if (!loading && profile) {
-      const profileData = { ...formData };
+      const profileData = { ...initialState };
       for (const key in profile) {
         if (key in profileData) profileData[key] = profile[key];
       }
@@ -49,7 +50,7 @@ const EditProfile = ({ getCurrentProfile, createProfile, history, profile: { pro
       if (Array.isArray(profileData.skills)) profileData.skills = profileData.skills.join(', ');
       setFormData(profileData);
     }
-  }, [loading]);
+  }, [loading, getCurrentProfile, profile]);
 
   const onChangeHandler = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmitHandler = (e) => {
