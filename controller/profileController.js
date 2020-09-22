@@ -59,12 +59,12 @@ module.exports = {
       if (profile) {
         // update profile
         profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true });
-        return res.json({ data: { msg: 'Success', profile } });
+        return res.status(200).json({ data: { msg: 'Success', profile } });
       }
       // Profile is not present
       profile = new Profile(profileFields);
       await profile.save();
-      return res.json({ data: { msg: 'Success', profile } });
+      return res.status(200).json({ data: { msg: 'Success', profile } });
     } catch (error) {
       next(error);
     }
