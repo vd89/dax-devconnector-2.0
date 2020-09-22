@@ -6,6 +6,7 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 // user
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
 
 // Auth
 export const USER_LOADED = 'USER_LOADED';
