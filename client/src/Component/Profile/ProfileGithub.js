@@ -35,7 +35,7 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
 
 ProfileGithub.propTypes = {
   getGithubRepos: PropTypes.func.isRequired,
-  username: PropTypes.object.isRequired,
+  username: PropTypes.string.isRequired,
   repos: PropTypes.array.isRequired,
 };
 const mapStateToProps = (state) => ({
