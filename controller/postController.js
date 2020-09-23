@@ -23,7 +23,7 @@ module.exports = {
   getAllPost: async (req, res, next) => {
     try {
       const posts = await Post.find().sort({ createdAt: -1 });
-      return res.status(200).json({ data: { msg: 'Success', posts } });
+      return res.json({ data: { msg: 'Success', posts } });
     } catch (error) {
       next(error);
     }

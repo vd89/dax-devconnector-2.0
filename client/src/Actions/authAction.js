@@ -14,7 +14,6 @@ import {
   CLEAR_PROFILE,
 } from './types';
 
-// Register User
 
 const config = {
   headers: {
