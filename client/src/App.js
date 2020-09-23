@@ -20,6 +20,7 @@ import AddEducation from './Component/Dashboard/ProfileForms/AddEducation';
 import Profiles from './Component/Profiles/Profiles';
 import Profile from './Component/Profile/Profile';
 import Posts from './Component/Posts/Posts';
+import Post from './Component/Post/Post';
 
 const App = () => {
   useEffect(() => {
@@ -46,6 +47,7 @@ const App = () => {
               <PrivateRoute exact path='/addExperience' component={AddExperience} />
               <PrivateRoute exact path='/addEducation' component={AddEducation} />
               <PrivateRoute exact path='/posts' component={Posts} />
+              <PrivateRoute exact path='/posts/:id' component={Post} />
             </Switch>
           </section>
         </>

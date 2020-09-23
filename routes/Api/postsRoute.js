@@ -60,6 +60,6 @@ postRoute.post('/comment/:id', auth, commentRules(), validate, addComment)
 // @route    Delete api/posts/comment/:id/:commentID
 // @desc     Remove Comment
 // @access   Private
-postRoute.delete('/comment/:id/:commentID', auth, commentRules(), validate, removeComment)
+postRoute.delete('/comment/:id/:commentID', auth, removeComment);
 
 module.exports = postRoute;
