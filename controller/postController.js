@@ -60,7 +60,7 @@ module.exports = {
       if (!post) return res.status(404).json({ data: { msg: 'Fail', result: 'Post Not Found' } });
       // Check if the post has already been liked
       if (post.likes.filter((like) => like.user.toString() === req.user.id).length > 0) {
-        return res.status(404).json({ data: { msg: 'Fail', result: 'Post already liked' } });
+        return res.status(400).json({ data: { msg: 'Fail', result: 'Post already liked' } });
       }
       post.likes.unshift({ user: req.user.id });
       await post.save();
@@ -76,7 +76,7 @@ module.exports = {
       if (!post) return res.status(404).json({ data: { msg: 'Fail', result: 'Post Not Found' } });
       // Check if the post has already been liked
       if (post.likes.filter((like) => like.user.toString() === req.user.id).length === 0) {
-        return res.status(404).json({ data: { msg: 'Fail', result: 'Post has not yet been liked' } });
+        return res.status(400).json({ data: { msg: 'Fail', result: 'Post has not yet been liked' } });
       }
       // Remove the like
       post.likes = post.likes.filter(({ user }) => user.toString() !== req.user.id);
