@@ -8,10 +8,11 @@
 }
 .App-logo {
   width: 250px;
+  height: 40vmin;
   margin: auto;
   display: block;
   pointer-events: none;
-  animation: App-logo-spin infinite 10s linear;
+  animation: App-logo-spin infinite 5s linear;
 
 }
 
